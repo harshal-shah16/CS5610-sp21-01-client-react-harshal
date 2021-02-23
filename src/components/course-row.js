@@ -23,7 +23,7 @@ const CourseRow = (
 
     return(
         <tr>
-        <td>
+        <td className="col-md-4">
             {
                 !editing &&
                 <Link to="/editor">
@@ -38,9 +38,9 @@ const CourseRow = (
                     value={title}/>
             }
         </td>
-        <td>{course.owner}</td>
-        <td>{course.lastModified}</td>
-        <td>
+        <td className="col-md-2 d-none d-sm-block text-left">{course.owner}</td>
+        <td className="col-md-2">{course.lastModified}</td>
+        <td className="col-md-3">
             <i onClick={() => deleteCourse(course)} className="fas fa-trash"></i>
 
             {

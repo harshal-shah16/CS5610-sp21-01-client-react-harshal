@@ -43,10 +43,11 @@ export default class CourseManager
         })
   }
 
-  addCourse = () => {
+  addCourse = (newCourseTitle) => {
+   
     
     const newCourse = {
-      title: "New Course",
+      title: newCourseTitle,
       owner: "me",
       lastModified: "2/10/2021"
     }
@@ -65,6 +66,7 @@ export default class CourseManager
           <CourseTable
               updateCourse={this.updateCourse}
               deleteCourse={this.deleteCourse}
+              addCourse={this.addCourse}
               courses={this.state.courses}/>
         </Route>
         

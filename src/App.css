@@ -7,11 +7,26 @@
   pointer-events: none;
 }
 
+.floating{
+  position:fixed;
+  width:60px;
+  height:60px;
+  bottom:40px;
+  right:40px;
+  background-color:rgb(29, 102, 84);
+  color:#FFF;
+  border-radius:50px;
+  text-align:center;
+  box-shadow: 2px 2px 3px #999;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
 }
+
+
 
 .App-header {
   background-color: #282c34;
@@ -35,4 +50,6 @@
   to {
     transform: rotate(360deg);
   }
+
+
 }
