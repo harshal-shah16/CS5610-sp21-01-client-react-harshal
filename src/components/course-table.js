@@ -11,13 +11,19 @@ export default class CourseTable extends React.Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
-  handleClick(e) {
+
+  // componentDidMount() {
+  //   this.handleClick();
+
+  // }
+
+  handleClick(e) {    
     
     if (this.state.title !== "") {
-      this.props.addCourse(this.state.title);
-      //console.log(this.state.title)
+      
+      this.props.addCourse(this.state.title);      
       this.setState({ title: "" });
-      //console.log(this.state.title)
+      
     }
   }
 
