@@ -71,7 +71,11 @@ export default class CourseManager
         </Route>
         
         <Route path="/courses/grid" exact={true} >
-          <CourseGrid courses={this.state.courses}/>
+          <CourseGrid 
+          updateCourse={this.updateCourse}
+          deleteCourse={this.deleteCourse}
+          addCourse={this.addCourse}
+          courses={this.state.courses}/>
         </Route>
     
       </div>
