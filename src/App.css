@@ -12,7 +12,7 @@
   width:60px;
   height:60px;
   bottom:40px;
-  right:40px;
+  right:0px;
   background-color:rgb(29, 102, 84);
   color:#FFF;
   border-radius:50px;
@@ -20,18 +20,23 @@
   box-shadow: 2px 2px 3px #999;
 }
 
-.floating-grid-btn{
+.container{
+  display: flex;
+  justify-content: space-between!important;
+}
+
+/* .floating-grid-btn{
   position:fixed;
   width:60px;
   height:60px;
-  top:80px;
+  top:125px;
   right:40px;
   background-color:white;
   color:blue;
   padding: 5;
   text-align:center;
   box-shadow: 2px 2px 3px #999;
-}
+} */
 
 
 .fa-check:hover, .fa-edit:hover{
@@ -40,6 +45,42 @@
 
 .fa-times:hover{
   color: rgb(248, 9, 21);
+}
+
+
+a:hover {
+  background-color: cadetblue!important;
+
+}
+
+.nav-item > .nav-link.active  {
+  background-color:darkslategrey !important;
+}
+
+.nav-link {
+  font-family: Comic Sans MS, Comic Sans, cursive;
+}
+
+li:hover {
+  background-color:cadetblue!important;
+}
+
+body {
+  background-color: darkslategray!important;
+}
+
+li > i {
+  display: inline-block;
+  float:right;
+}
+
+.nav-tabs i {
+  display: inline-block;
+  float:right;
+}
+
+tr {
+  color:white
 }
 
 @media (prefers-reduced-motion: no-preference) {

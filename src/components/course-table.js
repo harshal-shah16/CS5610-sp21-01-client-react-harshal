@@ -1,28 +1,25 @@
-import React from 'react'
+import React from "react";
 import CourseRow from "./course-row";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
-export default class CourseTable extends
-  React.Component {
+export default class CourseTable extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      title: "",
+    };
+    this.handleClick = this.handleClick.bind(this);
+  }
 
-    constructor(props) {
-      super(props);
-      this.state = {
-        title: ""
-      };
-      this.handleClick = this.handleClick.bind(this);
-    }
+  handleClick(e) {
     
-   async handleClick() {
-      
-      if (this.state.title !== "") {
-      await this.props.addCourse(this.state.title)
+    if (this.state.title !== "") {
+      this.props.addCourse(this.state.title);
       //console.log(this.state.title)
-      this.setState({title:""})
+      this.setState({ title: "" });
       //console.log(this.state.title)
-      }
     }
-  
+  }
 
   render() {
     return (
@@ -52,50 +49,26 @@ export default class CourseTable extends
             </button>
           </div>
         </nav>
-        {/* <div className="row border border-secondary px-2 py-2 header position-static">
-          <div className="col-4 d-none d-sm-block text-center">
-            <h5 className="font-weight-bold">Title</h5>
-          </div>
-          <div className="col-6 d-block d-sm-none">
-            <h5 className="font-weight-bold">Title</h5>
-          </div>
-          <div className="col-2 d-none d-sm-block">
-            <span className="font-weight-bold">Owned By</span>
-            <span>
-              <i className="fa fa-sort-down"></i>
-            </span>
-          </div>
-          <div className="col-2 d-none d-lg-block text-center">
-            <p className="font-weight-bold">Last Modified</p>
-          </div>
-          <div className="col-3 d-none d-sm-block text-center">
-            <i className="fa fa-sort"></i>
-          </div>
-          <div className="col-4 d-block text-center d-sm-none">
-            
-          </div>
-          <div className="col-1"></div>
-        </div> */}
 
         <table className="table m-3 p-3 table-hover table-striped">
           <thead>
             <tr>
-            <th scope="col">
-              <h5>Title</h5>
-            </th>
-            <th scope="col" className="text-center d-none d-md-block">
-              <h5>Owned By</h5>
-            </th>
-            <th scope="col" className="text-center d-none d-lg-block">
-              <h5>Last Modified</h5>
-            </th>
-            <th scope="col" className="text-center">
-              <i class="fas fa-folder-open fa-2x mr-3"></i>
-              <i className="fa fa-sort fa-2x mr-3"></i>
-              <Link to="/courses/grid">
-                <i className="fas fa-th fa-2x"></i>
-              </Link>
-            </th>
+              <th scope="col">
+                <h5>Title</h5>
+              </th>
+              <th scope="col" className="d-none d-sm-table-cell text-center">
+                <h5>Owned By</h5>
+              </th>
+              <th scope="col" className="d-none d-lg-table-cell text-center">
+                <h5>Last Modified</h5>
+              </th>
+              <th scope="col" className="text-center">
+                <i className="fas fa-folder-open fa-2x mr-3"></i>
+                <i className="fa fa-sort fa-2x mr-3"></i>
+                <Link to="/courses/grid">
+                  <i className="fas fa-th fa-2x"></i>
+                </Link>
+              </th>
             </tr>
           </thead>
           <tbody>

@@ -20,60 +20,76 @@ const CourseCard = ({course, deleteCourse, updateCourse}) => {
 
 
 return (
-    <div>
-        
-        <div className="row">        {
-        
-                <div className="card m-5" style={{width: "18rem", margin: "15px"}}>
-                    <img src="https://www.valuecoders.com/blog/wp-content/uploads/2016/08/react.png" className="card-img-top" alt="..."/>
-                    <div className="card-body">
-                        <h5 className="card-title">
-                        {
-                !editing &&
-                <Link to="/editor">
-                    {course.title}
+  
+    <div className="row">
+      {
+        <div className="card m-5" style={{ width: "18rem", margin: "15px" }}>
+          <img
+            src="https://www.valuecoders.com/blog/wp-content/uploads/2016/08/react.png"
+            className="card-img-top"
+            alt="..."
+          />
+          <div className="card-body">
+            <h5 className="card-title">
+              {!editing && (
+                <Link
+                  to={{
+                    pathname: "/editor",
+                    state: {
+                      title: title,
+                    },
+                  }}
+                >
+                  {course.title}
                 </Link>
-            }
-            {
-                editing &&
+              )}
+              {editing && (
                 <input
-                    className="form-control"
-                    onChange={(e) => setTitle(e.target.value)}
-                    value={title}/>
-            }
-                            
-                        </h5>
-                        <p className="card-text">Course Description</p>
-                        <Link to="/editor" className="btn btn-primary">
-                            {course.title}
-                        </Link>
+                  className="form-control"
+                  onChange={(e) => setTitle(e.target.value)}
+                  value={title}
+                />
+              )}
+            </h5>
+            <p className="card-text">Course Description</p>
+            <Link
+              className="btn btn-primary"
+              to={{
+                pathname: "/editor",
+                state: {
+                  title: title,
+                },
+              }}
+            >
+              {course.title}
+            </Link>
 
+            {editing && (
+              <i
+                onClick={() => deleteCourse(course)}
+                className="fas fa-times fa-2x float-right p-1"
+              ></i>
+            )}
 
-            {
-                editing &&
-                <i onClick={() => deleteCourse(course)} className="fas fa-times fa-2x float-right p-1"></i>
-            }
-           
+            {editing && (
+              <i
+                onClick={() => saveCourse(course)}
+                className="fas fa-check fa-2x float-right p-1"
+              ></i>
+            )}
 
-            {
-                editing &&
-                <i onClick={() => saveCourse(course)} className="fas fa-check fa-2x float-right p-1"></i>
-                
-            }
-
-          
-            {
-                !editing &&
-                <i onClick={() => setEditing(true)} className="fas fa-edit fa-2x float-right p-1"></i>
-            }
-                    </div>
-                </div>
-            
-        }
+            {!editing && (
+              <i
+                onClick={() => setEditing(true)}
+                className="fas fa-edit fa-2x float-right p-1"
+              ></i>
+            )}
+          </div>
         </div>
-
+      }
     </div>
-    )
+  
+);
 
 }
 
