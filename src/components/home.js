@@ -11,8 +11,18 @@ const Home = () => (
       <Link to="/courses/grid" className="list-group-item">
         Courses Grid
       </Link>
-      <Link to="/editor" className="list-group-item">
+      {/* <Link to="/editor" className="list-group-item">
         Course Editor
+      </Link> */}
+
+      <Link
+        to={{
+          pathname: "/editor",
+          state: {
+            title: "CS5610",
+          },
+        }} className="list-group-item"
+      > Course Editor       
       </Link>
     </div>
   </>

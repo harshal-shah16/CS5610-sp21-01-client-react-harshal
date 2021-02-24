@@ -11,6 +11,7 @@ export default class CourseManager
   }
 
   componentDidMount() {
+    
     courseService.findAllCourses()
         .then(courses => this.setState({courses}))
         
