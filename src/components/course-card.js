@@ -51,20 +51,20 @@ return (
 
             {
                 editing &&
-                <i onClick={() => deleteCourse(course)} className="fas fa-trash float-right p-1"></i>
+                <i onClick={() => deleteCourse(course)} className="fas fa-times fa-2x float-right p-1"></i>
             }
            
 
             {
                 editing &&
-                <i onClick={() => saveCourse(course)} className="fas fa-check float-right p-1"></i>
+                <i onClick={() => saveCourse(course)} className="fas fa-check fa-2x float-right p-1"></i>
                 
             }
 
           
             {
                 !editing &&
-                <i onClick={() => setEditing(true)} className="fas fa-edit float-right p-1"></i>
+                <i onClick={() => setEditing(true)} className="fas fa-edit fa-2x float-right p-1"></i>
             }
                     </div>
                 </div>

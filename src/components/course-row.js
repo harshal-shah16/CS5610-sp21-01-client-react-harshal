@@ -23,7 +23,7 @@ const CourseRow = (
 
     return(
         <tr>
-        <td className="col-md-4">
+        <th scope="row" style={{"width": "40%"}}>
             {
                 !editing &&
                 <Link to="/editor">
@@ -37,20 +37,25 @@ const CourseRow = (
                     onChange={(e) => setTitle(e.target.value)}
                     value={title}/>
             }
-        </td>
-        <td className="col-md-2 d-none d-sm-block text-left">{course.owner}</td>
-        <td className="col-md-2">{course.lastModified}</td>
-        <td className="col-md-3">
-            <i onClick={() => deleteCourse(course)} className="fas fa-trash"></i>
+        </th>
+        <td  className="text-center d-none d-md-block" style={{"width": "20%"}}>{course.owner}</td>
+        <td  className="text-center d-none d-lg-block" style={{"width": "20%", "text-align":"right"}}>{course.lastModified}</td>
+        <td  className="text-center" style={{"width": "20%"}}>
+            
+            {
+                editing &&
+                <i onClick={() => saveCourse()} className="fas fa-check fa-2x mr-2"></i>
+            }
 
             {
                 editing &&
-                <i onClick={() => saveCourse()} className="fas fa-check"></i>
+               <i onClick={() => deleteCourse(course)} className="fas fa-times fa-2x"></i>
+
             }
 
             {
                 !editing &&
-                <i onClick={() => setEditing(true)} className="fas fa-edit"></i>
+                <i onClick={() => setEditing(true)} className="fas fa-edit fa-2x"></i>
             }
 
 
