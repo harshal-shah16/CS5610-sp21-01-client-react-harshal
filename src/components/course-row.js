@@ -26,13 +26,13 @@ const CourseRow = ({
         {!editing && (
           <Link
             to={{
-              pathname: "/editor",
+              pathname: `/courses/table/edit/${course._id}`,
               state: {
                 title: title,
               },
             }}
           >
-            {title}
+            {course.title}
           </Link>
         )}
         {editing && (
