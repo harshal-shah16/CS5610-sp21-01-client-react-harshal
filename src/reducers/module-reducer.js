@@ -1,15 +1,15 @@
 const initialState = {
     modules: [
-        {title: 'CS5610', _id: '123'},
-        {title: 'CS3200', _id: '234'},
-        {title: 'CS5200', _id: '345'},
+        // {title: 'CS5610', _id: '123'},
+        // {title: 'CS3200', _id: '234'},
+        // {title: 'CS5200', _id: '345'},
     ],
-    asdf: 111,
-    dfgdfgdfg: 345345
+    
 }
 
 const moduleReducer = (state = initialState, action) => {
     switch (action.type) {
+       
         case "CREATE_MODULE":
             // const newModule = {
             //     title: "New Module",
@@ -23,6 +23,7 @@ const moduleReducer = (state = initialState, action) => {
                 ]
             }
         case "DELETE_MODULE":
+            console.log(action);
             return {
                 ...state,
                 modules: state.modules.filter(module => {
@@ -38,7 +39,9 @@ const moduleReducer = (state = initialState, action) => {
                 ...state,
                 modules: state.modules.map(module => {
                     if(module._id === action.updateModule._id) {
+                        
                         return action.updateModule
+                        
                     } else {
                         return module
                     }

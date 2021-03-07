@@ -32,16 +32,9 @@ return (
           <div className="card-body">
             <h5 className="card-title">
               {!editing && (
-                <Link
-                  to={{
-                    pathname: "/editor",
-                    state: {
-                      title: title,
-                    },
-                  }}
-                >
-                  {course.title}
-                </Link>
+                 <Link to={`/courses/card/edit/${course._id}`}>
+                 {course.title}
+                 </Link>
               )}
               {editing && (
                 <input

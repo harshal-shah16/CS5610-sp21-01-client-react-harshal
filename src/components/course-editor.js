@@ -6,6 +6,7 @@ import {combineReducers, createStore} from "redux";
 import {Provider} from "react-redux";
 import ModuleList from "./module-list";
 import LessonTabs from "./lesson-tabs";
+import TopicPills from "./topic-pills";
 
 const reducer = combineReducers({
   moduleReducer: moduleReducer,
@@ -18,7 +19,6 @@ const CourseEditor = ({ history, name, params }) => {
   const {layout, courseID, moduleID} = useParams();
 return (
   <Provider store={store}>
-
 <h1>
           <Link to="/courses/table">
             <i className="fas fa-arrow-left"></i>
@@ -33,6 +33,12 @@ return (
             </div>
             <div className="col-9">
                 <LessonTabs/>
+            </div>
+        </div>
+        <div className="row">
+            <div className="col-3"></div>
+            <div className="col-9">
+                <TopicPills/>
             </div>
         </div>
   {/* <div className="container-fluid">

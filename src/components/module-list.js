@@ -2,7 +2,7 @@ import React, {useEffect} from 'react'
 import {connect, Provider} from "react-redux";
 import EditableItem from "./editable-item";
 import {useParams} from "react-router-dom";
-// import {findModulesForCourse, createModule} from "../services/module-service";
+import {findModulesForCourse, createModule} from "../services/module-service";
 import moduleService from "../services/module-service"
 
 const ModuleList = (
@@ -13,25 +13,26 @@ const ModuleList = (
         deleteModule,
         findModulesForCourse
     }) => {
-    const {layout, courseId, moduleId} = useParams();
+    const {layout, courseId} = useParams();
     useEffect(() => {
-        // console.log(courseId)
+        
         findModulesForCourse(courseId)
-    }, [])
+    }, [findModulesForCourse, courseId])
     return(<div>
         <h2>Module List</h2>
         <ul>
             <li>layout: {layout}</li>
             <li>courseId: {courseId}</li>
-            <li>moduleId: {moduleId}</li>
+            
         </ul>
 
 
         <ul className="list-group">
-            {
+            {   
+             
                 modules.map(module =>
                     <li className="list-group-item">
-                        <EditableItem
+                        <EditableItem                        
                             to={`/courses/${layout}/edit/${courseId}/modules/${module._id}`}
                             deleteItem={deleteModule}
                             updateItem={updateModule}
@@ -46,6 +47,7 @@ const ModuleList = (
     </div>)}
 
 const stpm = (state) => ({
+    
     modules: state.moduleReducer.modules
 })
 const dtpm = (dispatch) => ({
