@@ -2,6 +2,7 @@ import React from 'react'
 import {Link, useParams, useHistory} from "react-router-dom";
 import moduleReducer from "../reducers/module-reducer";
 import lessonReducer from "../reducers/lesson-reducer";
+import topicReducer from "../reducers/topic-reducer";
 import {combineReducers, createStore} from "redux";
 import {Provider} from "react-redux";
 import ModuleList from "./module-list";
@@ -10,7 +11,8 @@ import TopicPills from "./topic-pills";
 
 const reducer = combineReducers({
   moduleReducer: moduleReducer,
-  lessonReducer: lessonReducer
+  lessonReducer: lessonReducer,
+  topicReducer:topicReducer
 })
 
 const store = createStore(reducer)

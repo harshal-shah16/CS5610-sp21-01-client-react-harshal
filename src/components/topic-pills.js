@@ -16,8 +16,9 @@ const TopicPills = (
     const {layout, courseId, moduleId, lessonId} = useParams();
     useEffect(() => {        
         findTopicsForLesson(lessonId)
+        updateTopic(updateTopic)
     
-    }, [findTopicsForLesson, lessonId])
+    }, [findTopicsForLesson, lessonId, updateTopic])
         // console.log(layout)
         // console.log(courseId);
         // console.log('moduleIDis', moduleId);

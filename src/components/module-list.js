@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState}from 'react';
 import {connect, Provider} from "react-redux";
 import EditableItem from "./editable-item";
 import {useParams} from "react-router-dom";
@@ -13,7 +13,10 @@ const ModuleList = (
         deleteModule,
         findModulesForCourse
     }) => {
+
     const {layout, courseId} = useParams();
+    const [title, setTitle] = useState("");
+   
     useEffect(() => {
         
         findModulesForCourse(courseId)
