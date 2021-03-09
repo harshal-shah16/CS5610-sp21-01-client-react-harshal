@@ -24,9 +24,19 @@ const CourseRow = ({
     <tr>
       <th scope="row" style={{ width: "40%" }}>
         {!editing && (
-          <Link to={`/courses/table/edit/${course._id}`}>
-          {course.title}
-          </Link>
+
+              <Link
+              to={{
+                pathname: `/courses/table/edit/${course._id}`,             
+                state: { coursetitle:title }
+              }}
+              >
+              {course.title}
+              </Link>
+              
+          // <Link to={`/courses/table/edit/${course._id}`}>
+          // {course.title}
+          // </Link>
         )}
         {editing && (
           <input

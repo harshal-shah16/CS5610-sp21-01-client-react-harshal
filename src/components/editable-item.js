@@ -36,8 +36,7 @@ const EditableItem = (
                         updateItem(itemCache)
                     }} className="fas fa-check"></i>
                     <i onClick={() => {
-                        setEditing(false) 
-                        updateItem(itemCache)
+                        setEditing(false)                         
                         deleteItem(item)}} className="fas fa-times"></i>
                 </>
             }

@@ -24,11 +24,11 @@ const TopicPills = (
         // console.log('moduleIDis', moduleId);
         // console.log('lessonidis', lessonId);
         return(<div>
-        <h2>Lesson Tabs</h2>
+        <h2>Topics</h2>
         <ul className="nav nav-pills">
             {
                 topics.map(topic =>
-                    <li className="nav-item">
+                    <li className="nav-item active" key={topic._id} data-toggle="tab">
                         <EditableItem
                             to={`/courses/${layout}/edit/${courseId}/modules/${moduleId}/lessons/${topic._id}`}
                             item={topic}

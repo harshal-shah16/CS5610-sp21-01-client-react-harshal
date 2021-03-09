@@ -1,49 +1,62 @@
-import React from 'react'
-import {Link, useParams, useHistory} from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useParams, useHistory } from "react-router-dom";
 import moduleReducer from "../reducers/module-reducer";
 import lessonReducer from "../reducers/lesson-reducer";
 import topicReducer from "../reducers/topic-reducer";
-import {combineReducers, createStore} from "redux";
-import {Provider} from "react-redux";
+import { combineReducers, createStore } from "redux";
+import { Provider } from "react-redux";
 import ModuleList from "./module-list";
 import LessonTabs from "./lesson-tabs";
 import TopicPills from "./topic-pills";
+import CourseService from "../services/course-service";
 
 const reducer = combineReducers({
   moduleReducer: moduleReducer,
   lessonReducer: lessonReducer,
-  topicReducer:topicReducer
-})
+  topicReducer: topicReducer,
+});
 
-const store = createStore(reducer)
+const store = createStore(reducer);
 
-const CourseEditor = ({ history, name, params }) => {
-  const {layout, courseID, moduleID} = useParams();
-return (
-  <Provider store={store}>
-<h1>
-          <Link to="/courses/table">
-            <i className="fas fa-arrow-left"></i>
-          </Link>
-          Course Editor
-          <i className="fas fa-times float-right"
-             onClick={() => history.goBack()}></i>
+const CourseEditor = ({ history, name, params, coursetitle}) => {
+  const { layout, courseID, moduleID, props} = useParams();
+  //console.log(props.location.state)
+
+  // let courseTitle;
+
+
+  // CourseService.findCourseById(courseID).then(course => courseTitle = course)
+  // console.log(courseTitle)
+
+  
+  return (
+    <Provider store={store}>
+      <h1>
+        <Link to="/courses/table">
+          <i className="fas fa-arrow-left"></i>
+        </Link>
+        {coursetitle}
+        
+        <i
+          className="fas fa-times float-right"
+          onClick={() => history.goBack()}
+        ></i>
       </h1>
-        <div className="row">
-            <div className="col-3">
-                <ModuleList/>
-            </div>
-            <div className="col-9">
-                <LessonTabs/>
-            </div>
+      <div className="row">
+        <div className="col-3">
+          <ModuleList />
         </div>
-        <div className="row">
-            <div className="col-3"></div>
-            <div className="col-9">
-                <TopicPills/>
-            </div>
+        <div className="col-9">
+          <LessonTabs />
         </div>
-  {/* <div className="container-fluid">
+      </div>
+      <div className="row">
+        <div className="col-3"></div>
+        <div className="col-9">
+          <TopicPills />
+        </div>
+      </div>
+      {/* <div className="container-fluid">
     <h1>
       <Link to="/courses/table">
         <i className="fas fa-arrow-left"></i>
@@ -178,8 +191,8 @@ return (
       </div>
     </div>
   </div> */}
-  </Provider>
-);
-}
+    </Provider>
+  );
+};
 
 export default CourseEditor;
