@@ -23,28 +23,29 @@ const ModuleList = (
     }, [findModulesForCourse, courseId])
     return(<div>
         <h2>Module List</h2>
-        <ul>
+        {/* <ul>
             <li>layout: {layout}</li>
             <li>courseId: {courseId}</li>
             
-        </ul>
+        </ul> */}
 
 
         <ul className="list-group">
             {   
              
                 modules.map(module =>
-                    <li className="list-group-item" key={module._id}>
+                    <li className="list-group-item target" key={module._id} eventkey={module._id}>
                         <EditableItem                        
                             to={`/courses/${layout}/edit/${courseId}/modules/${module._id}`}
                             deleteItem={deleteModule}
                             updateItem={updateModule}
-                            item={module}/>
+                            item={module}
+                            courseId={courseId}/>
                     </li>
                 )
             }
             <li className="list-group-item">
-                <i onClick={() => createModule(courseId)} className="fas fa-plus fa-2x"></i>
+                <i onClick={() => createModule(courseId)} className="fas fa-plus"></i>
             </li>
         </ul>
     </div>)}

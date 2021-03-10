@@ -47,7 +47,9 @@
   color: rgb(248, 9, 21);
 }
 
-
+:target {
+  background-color: red;
+}
 a:hover {
   background-color: cadetblue!important;
 

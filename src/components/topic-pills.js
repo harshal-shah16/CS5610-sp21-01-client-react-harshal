@@ -28,17 +28,18 @@ const TopicPills = (
         <ul className="nav nav-pills">
             {
                 topics.map(topic =>
-                    <li className="nav-item active" key={topic._id} data-toggle="tab">
+                    <li className="nav-item active ml-3" key={topic._id} data-toggle="tab">
                         <EditableItem
                             to={`/courses/${layout}/edit/${courseId}/modules/${moduleId}/lessons/${topic._id}`}
                             item={topic}
                             deleteItem={deleteTopic}
-                            updateItem={updateTopic}/>
+                            updateItem={updateTopic}
+                            courseId={courseId}/>
                     </li>
                 )
             }
-             <li className="list-group-item">
-                <i onClick={() => createTopic(lessonId)} className="fas fa-plus fa-2x"></i>
+             <li className="list-group-item ml-5">
+                <i onClick={() => createTopic(lessonId)} className="fas fa-plus"></i>
             </li>
         </ul>
     </div>)}

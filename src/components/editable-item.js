@@ -6,7 +6,8 @@ const EditableItem = (
         to,
         item,
         updateItem,
-        deleteItem
+        deleteItem,
+        courseId
     }) => {
     const [editing, setEditing] = useState(false)
     const [itemCache, setItemCache] = useState(item)
@@ -35,9 +36,10 @@ const EditableItem = (
                         setEditing(false)
                         updateItem(itemCache)
                     }} className="fas fa-check"></i>
-                    <i onClick={() => {
+                    <Link to={`/courses/table/edit/${courseId}`}><i onClick={() => {
                         setEditing(false)                         
                         deleteItem(item)}} className="fas fa-times"></i>
+                        </Link>
                 </>
             }
         </>

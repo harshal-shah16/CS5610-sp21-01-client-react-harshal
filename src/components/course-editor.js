@@ -19,29 +19,28 @@ const reducer = combineReducers({
 const store = createStore(reducer);
 
 const CourseEditor = ({ history, name, params, coursetitle}) => {
-  const { layout, courseID, moduleID, props} = useParams();
-  //console.log(props.location.state)
 
-  // let courseTitle;
-
-
-  // CourseService.findCourseById(courseID).then(course => courseTitle = course)
-  // console.log(courseTitle)
-
-  
+  const {courseId} = useParams();
+  const [courseTitle, setCourseTitle] = useState("");
+  useEffect(() => getTitle(courseId), [courseId]);
+  const getTitle = (courseId) => {
+    CourseService.findCourseById(courseId) 
+      .then(course => setCourseTitle(course.title));
+  }
+    
   return (
     <Provider store={store}>
-      <h1>
+      <h2>
         <Link to="/courses/table">
           <i className="fas fa-arrow-left"></i>
         </Link>
-        {coursetitle}
+         {courseTitle}
         
         <i
           className="fas fa-times float-right"
           onClick={() => history.goBack()}
         ></i>
-      </h1>
+      </h2>
       <div className="row">
         <div className="col-3">
           <ModuleList />

@@ -22,20 +22,21 @@ const LessonTabs = (
 
         return(<div>
         <h2>Lesson Tabs</h2>
-        <ul className="nav nav-tabs">
+        <ul className="nav nav-tabs" activekey="/home">
             {
                 lessons.map(lesson =>
-                    <li className="nav-item" key={lesson._id}>
+                    <li className="nav-item" href="/home" key={lesson._id} eventkey={lesson._id}>
                         <EditableItem
                             to={`/courses/${layout}/edit/${courseId}/modules/${moduleId}/lessons/${lesson._id}`}
                             item={lesson}
                             deleteItem={deleteLesson}
-                            updateItem={updateLesson}/>
+                            updateItem={updateLesson}
+                            courseId={courseId}/>
                     </li>
                 )
             }
              <li className="list-group-item">
-                <i onClick={() => createLesson(moduleId)} className="fas fa-plus fa-2x"></i>
+                <i onClick={() => createLesson(moduleId)} className="fas fa-plus"></i>
             </li>
         </ul>
     </div>)}
