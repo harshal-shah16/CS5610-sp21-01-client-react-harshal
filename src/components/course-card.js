@@ -48,7 +48,7 @@ return (
             <Link
               className="btn btn-primary"
               to={{
-                pathname: "/editor",
+                pathname: `/courses/card/edit/${course._id}`,
                 state: {
                   title: title,
                 },

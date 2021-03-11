@@ -8,7 +8,7 @@ const Home = () => (
       <Link to="/courses/table" className="list-group-item">
         Courses Table
       </Link>
-      <Link to="/courses/grid" className="list-group-item">
+      <Link to="/courses/card" className="list-group-item">
         Courses Grid
       </Link>
       {/* <Link to="/editor" className="list-group-item">
@@ -17,7 +17,7 @@ const Home = () => (
 
       <Link
         to={{
-          pathname: "/editor",
+          pathname: "/courses/table/",
           state: {
             title: "CS5610",
           },

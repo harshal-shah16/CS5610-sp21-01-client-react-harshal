@@ -1,8 +1,10 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import {connect} from "react-redux";
 import EditableItem from "./editable-item";
 import {useParams} from "react-router-dom";
 import lessonService from "../services/lesson-service"
+import topicService from "../services/topic-service"
+
 
 
 const LessonTabs = (
@@ -14,25 +16,36 @@ const LessonTabs = (
         findLessonsForModule
     }) => {
     const {layout, courseId, moduleId} = useParams();
-    console.log('moduleID from lesson-tabs is ',moduleId)
+   //console.log('moduleID from lesson-tabs is ',moduleId)
+
+   const [selectedId, setSelectedId] = useState("");
+
+    const changeSelectedId = (id) => {
+       
+        setSelectedId(id);
+    }
     
     useEffect(() => {        
         findLessonsForModule(moduleId)    
-    }, [findLessonsForModule, moduleId])
+    }, [findLessonsForModule, moduleId, courseId])
 
         return(<div>
-        <h2>Lesson Tabs</h2>
+        <h2>Lessons</h2>
         <ul className="nav nav-tabs" activekey="/home">
             {
                 lessons.map(lesson =>
-                    <li className="nav-item" href="/home" key={lesson._id} eventkey={lesson._id}>
+                    //<li className="nav-item" href="/home" key={lesson._id} eventkey={lesson._id}>
                         <EditableItem
                             to={`/courses/${layout}/edit/${courseId}/modules/${moduleId}/lessons/${lesson._id}`}
                             item={lesson}
                             deleteItem={deleteLesson}
                             updateItem={updateLesson}
-                            courseId={courseId}/>
-                    </li>
+                            courseId={courseId}
+                            key = {lesson._id}
+                            id = {lesson._id}
+                            select={changeSelectedId}
+                            selectedId = {selectedId}/>
+                    //</li>
                 )
             }
              <li className="list-group-item">
@@ -64,6 +77,8 @@ const dtpm = (dispatch) => ({
                 type: "FIND_LESSONS_FOR_MODULE",
                 lessons: lessons  
         }))
+        topicService.findTopicsForLesson(undefined)
+        .then(topics => dispatch({type: "FIND_TOPICS_FOR_LESSON", topics: topics}))
     }
 })
 

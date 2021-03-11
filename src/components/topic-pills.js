@@ -1,4 +1,4 @@
-import React , {useEffect} from 'react'
+import React , {useEffect, useState} from 'react'
 import {connect} from "react-redux";
 import EditableItem from "./editable-item";
 import {useParams} from "react-router-dom";
@@ -14,11 +14,21 @@ const TopicPills = (
         findTopicsForLesson
     }) => {
     const {layout, courseId, moduleId, lessonId} = useParams();
+    
+    const [selectedId, setSelectedId] = useState("");
+
+    const changeSelectedId = (id) => {
+        console.log(id);
+        setSelectedId(id);
+    }
+
     useEffect(() => {        
         findTopicsForLesson(lessonId)
         updateTopic(updateTopic)
     
-    }, [findTopicsForLesson, lessonId, updateTopic])
+    }, [findTopicsForLesson, lessonId, updateTopic, moduleId, courseId])
+
+    
         // console.log(layout)
         // console.log(courseId);
         // console.log('moduleIDis', moduleId);
@@ -28,17 +38,21 @@ const TopicPills = (
         <ul className="nav nav-pills">
             {
                 topics.map(topic =>
-                    <li className="nav-item active ml-3" key={topic._id} data-toggle="tab">
+                    //<li className="nav-item active ml-3" key={topic._id} data-toggle="tab">
                         <EditableItem
-                            to={`/courses/${layout}/edit/${courseId}/modules/${moduleId}/lessons/${topic._id}`}
+                            to={`/courses/${layout}/edit/${courseId}/modules/${moduleId}/lessons/${lessonId}/topics/${topic._id}`}
                             item={topic}
                             deleteItem={deleteTopic}
                             updateItem={updateTopic}
-                            courseId={courseId}/>
-                    </li>
+                            courseId={courseId}
+                            key={topic._id}
+                            id = {topic._id}
+                            select={changeSelectedId}
+                            selectedId = {selectedId}/>
+                    //</li>
                 )
             }
-             <li className="list-group-item ml-5">
+             <li className="list-group-item">
                 <i onClick={() => createTopic(lessonId)} className="fas fa-plus"></i>
             </li>
         </ul>

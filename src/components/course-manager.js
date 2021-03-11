@@ -71,7 +71,7 @@ export default class CourseManager
               courses={this.state.courses}/>
         </Route>
         
-        <Route path="/courses/grid" exact={true} >
+        <Route path="/courses/card" exact={true} >
           <CourseGrid 
           updateCourse={this.updateCourse}
           deleteCourse={this.deleteCourse}

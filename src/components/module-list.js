@@ -4,6 +4,8 @@ import EditableItem from "./editable-item";
 import {useParams} from "react-router-dom";
 import {findModulesForCourse, createModule} from "../services/module-service";
 import moduleService from "../services/module-service"
+import lessonService from "../services/lesson-service"
+import topicService from "../services/topic-service"
 
 const ModuleList = (
     {
@@ -16,6 +18,13 @@ const ModuleList = (
 
     const {layout, courseId} = useParams();
     const [title, setTitle] = useState("");
+    const [selectedId, setSelectedId] = useState("");
+
+    const changeSelectedId = (id) => {
+        //console.log(id);
+        setSelectedId(id);
+    }
+   
    
     useEffect(() => {
         
@@ -34,17 +43,22 @@ const ModuleList = (
             {   
              
                 modules.map(module =>
-                    <li className="list-group-item target" key={module._id} eventkey={module._id}>
+                    //<li className="list-group-item target" key={module._id} eventkey={module._id}>
                         <EditableItem                        
                             to={`/courses/${layout}/edit/${courseId}/modules/${module._id}`}
                             deleteItem={deleteModule}
                             updateItem={updateModule}
                             item={module}
-                            courseId={courseId}/>
-                    </li>
+                            courseId={courseId}
+                            type="module"
+                            key = {module._id}
+                            id = {module._id}
+                            select={changeSelectedId}
+                            selectedId = {selectedId}/>
+                    //</li>
                 )
             }
-            <li className="list-group-item">
+            <li className="list-group-item ml-1">
                 <i onClick={() => createModule(courseId)} className="fas fa-plus"></i>
             </li>
         </ul>
@@ -74,6 +88,11 @@ const dtpm = (dispatch) => ({
                 type: "FIND_MODULES_FOR_COURSE",
                 modules: modules  
         }))
+
+        lessonService.findLessonsForModule(undefined)
+        .then(lessons => dispatch({type: "FIND_LESSONS_FOR_MODULE", lessons: lessons}))
+        topicService.findTopicsForLesson(undefined)
+        .then(topics => dispatch({type: "FIND_TOPICS_FOR_LESSON", topics: topics}))
     }
 })
 

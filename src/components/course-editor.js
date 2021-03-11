@@ -19,8 +19,8 @@ const reducer = combineReducers({
 const store = createStore(reducer);
 
 const CourseEditor = ({ history, name, params, coursetitle}) => {
-
-  const {courseId} = useParams();
+  
+  const {layout, courseId} = useParams();
   const [courseTitle, setCourseTitle] = useState("");
   useEffect(() => getTitle(courseId), [courseId]);
   const getTitle = (courseId) => {
@@ -31,16 +31,17 @@ const CourseEditor = ({ history, name, params, coursetitle}) => {
   return (
     <Provider store={store}>
       <h2>
-        <Link to="/courses/table">
-          <i className="fas fa-arrow-left"></i>
+        <Link to={`/courses/${layout}`}>
+          <i className="fas fa-times mr-2 ml-2"></i>
         </Link>
          {courseTitle}
         
-        <i
+        {/* <i
           className="fas fa-times float-right"
           onClick={() => history.goBack()}
-        ></i>
+        ></i> */}
       </h2>
+  
       <div className="row">
         <div className="col-3">
           <ModuleList />
@@ -55,6 +56,7 @@ const CourseEditor = ({ history, name, params, coursetitle}) => {
           <TopicPills />
         </div>
       </div>
+      
       {/* <div className="container-fluid">
     <h1>
       <Link to="/courses/table">

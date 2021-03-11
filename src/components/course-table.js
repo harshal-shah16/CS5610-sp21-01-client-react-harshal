@@ -71,7 +71,7 @@ export default class CourseTable extends React.Component {
               <th scope="col" className="text-center">
                 <i className="fas fa-folder-open fa-2x mr-3"></i>
                 <i className="fa fa-sort fa-2x mr-3"></i>
-                <Link to="/courses/grid">
+                <Link to="/courses/card">
                   <i className="fas fa-th fa-2x"></i>
                 </Link>
               </th>
