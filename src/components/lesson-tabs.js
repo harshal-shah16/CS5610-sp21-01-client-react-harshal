@@ -27,7 +27,7 @@ const LessonTabs = (
     
     useEffect(() => {        
         findLessonsForModule(moduleId)    
-    }, [findLessonsForModule, moduleId, courseId])
+    }, [findLessonsForModule, moduleId])
 
         return(<div>
         <h2>Lessons</h2>

@@ -26,10 +26,9 @@ const ModuleList = (
     }
    
    
-    useEffect(() => {
-        
+    useEffect(() => {        
         findModulesForCourse(courseId)
-    }, [findModulesForCourse, courseId])
+    }, [courseId, findModulesForCourse])
     return(<div>
         <h2>Module List</h2>
         {/* <ul>
@@ -89,10 +88,10 @@ const dtpm = (dispatch) => ({
                 modules: modules  
         }))
 
-        lessonService.findLessonsForModule(undefined)
-        .then(lessons => dispatch({type: "FIND_LESSONS_FOR_MODULE", lessons: lessons}))
-        topicService.findTopicsForLesson(undefined)
-        .then(topics => dispatch({type: "FIND_TOPICS_FOR_LESSON", topics: topics}))
+        // lessonService.findLessonsForModule(undefined)
+        // .then(lessons => dispatch({type: "FIND_LESSONS_FOR_MODULE", lessons: lessons}))
+        // topicService.findTopicsForLesson(undefined)
+        // .then(topics => dispatch({type: "FIND_TOPICS_FOR_LESSON", topics: topics}))
     }
 })
 
