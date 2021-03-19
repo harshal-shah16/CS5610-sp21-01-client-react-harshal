@@ -3,6 +3,7 @@ import { Link, useParams, useHistory } from "react-router-dom";
 import moduleReducer from "../reducers/module-reducer";
 import lessonReducer from "../reducers/lesson-reducer";
 import topicReducer from "../reducers/topic-reducer";
+import widgetReducer from "../reducers/widget-reducer";
 import { combineReducers, createStore } from "redux";
 import { Provider } from "react-redux";
 import ModuleList from "./module-list";
@@ -15,16 +16,15 @@ const reducer = combineReducers({
   moduleReducer: moduleReducer,
   lessonReducer: lessonReducer,
   topicReducer: topicReducer,
+  widgetReducer: widgetReducer,
+
 });
 
 const store = createStore(reducer);
 
 const CourseEditor = ({ history, name, params, coursetitle}) => {
 
- 
-const WIDGETS_URL = process.env.REACT_APP_SERVER_URL; // to be replaced by HerokuURL
-console.log('url from widget-service',WIDGETS_URL);
-  
+
   const {layout, courseId} = useParams();
   const [courseTitle, setCourseTitle] = useState("");
   useEffect(() => getTitle(courseId), [courseId]);

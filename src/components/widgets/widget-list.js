@@ -1,57 +1,34 @@
 import React, {useState, useEffect} from 'react'
+import {connect} from "react-redux";
 import HeadingWidget from "./heading-widget";
 import ParagraphWidget from "./paragraph-widget";
 import {useParams} from "react-router-dom"
+import widgetService from "../../services/widget-service"
 
-const WidgetList = () => {
+const WidgetList = ({
+        widgets=[],
+        createWidget,
+        updateWidget,
+        deleteWidget,
+        findWidgetsForTopic
+}) => {
     const {topicId} = useParams()
     // TODO: move all state handling to widgets-reducer.js
-    const [widgets, setWidgets] = useState([])
-    const [widget, setWidget] = useState({})
+    const [widget, setWidget] = useState("");
+    console.log(widgets)
     useEffect(() => {
         // TODO: move all server communication to widgets-service.js
-        fetch(`http://localhost:8080/api/topics/${topicId}/widgets`)
-            .then(response => response.json())
-            .then(widgets => setWidgets(widgets))
-    }, [topicId])
+        // fetch(`http://localhost:8080/api/topics/${topicId}/widgets`)
+        //     .then(response => response.json())
+        //     .then(widgets => setWidgets(widgets))
+
+        findWidgetsForTopic(topicId)
+    }, [findWidgetsForTopic, topicId])
     
-    const createWidget = () => {
-        // TODO: move all server communication to widgets-service
-        fetch(`http://localhost:8080/api/topics/${topicId}/widgets`, {
-            method: 'POST',
-            body: JSON.stringify({type: "HEADING", size: 2, text: "New Widget"}),
-            headers: {
-                "content-type": 'application/json'
-            }
-        })
-            .then(response => response.json())
-            .then(widget => setWidgets((widgets) => [...widgets, widget]))
-    }
-
-    const deleteWidget = (id) =>
-        // TODO: move all server communication to widgets-service.js
-        fetch(`http://localhost:8080/api/widgets/${id}`, {
-            method: "DELETE"
-        }).then((status) => {
-            setWidgets((widgets) => widgets.filter(w => w.id !== id))
-        })
-
-    const updateWidget = (id, widget) =>
-        // TODO: move all server communication to widgets-service.js
-        fetch(`http://localhost:8080/api/widgets/${id}`, {
-            method: "PUT",
-            body: JSON.stringify(widget),
-            headers: {
-                "content-type": 'application/json'
-            }
-        }).then((status) => {
-            setWidget({})
-            setWidgets((widgets) => widgets.map(w => w.id === id ? widget : w))
-        })
     
     return(
         <div>
-            <i onClick={createWidget} className="fas fa-plus float-right fa-2x"></i>
+            <i onClick={createWidget(topicId)} className="fas fa-plus float-right fa-2x"></i>
             <h1>Widget List {widget.id}</h1>
             <ul className="list-group">
                 {
@@ -92,4 +69,33 @@ const WidgetList = () => {
     )
 }
 
-export default WidgetList
+const stpm = (state) => ({
+    widgets: state.widgetReducer.widgets
+})
+const dtpm = (dispatch) => ({
+    createWidget: (topicId) => {
+        widgetService.createWidget(topicId, {type: "HEADING", size: 1, text: "New Widget"})
+            .then(widget => dispatch({type: "CREATE_WIDGET", widget: widget}))
+        
+    },
+    updateWidget: (newItem) => {
+        widgetService.updateWidget(newItem._id, newItem)
+            .then(status => dispatch({type: "UPDATE_WIDGET", updateWidget: newItem}))
+    },
+    deleteWidget: (widgetToDelete) => {
+        widgetService.deleteTopic(widgetToDelete._id)
+            .then(status => dispatch({type: "DELETE_WIDGET", widgetToDelete: widgetToDelete}))
+    },
+    findWidgetsForTopic: (topicId) => {
+        widgetService.findWidgetsForTopic(topicId)
+            .then(widgets => dispatch({
+                type: "FIND_WIDGETS_FOR_TOPIC",
+                widgets: widgets  
+        }))
+    }
+})
+
+const pm = connect(stpm, dtpm)
+
+export default pm(WidgetList)
+

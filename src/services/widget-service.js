@@ -1,9 +1,4 @@
-
-const COURSES_URL = "https://wbdv-generic-server.herokuapp.com/api/001063955/courses";
-const MODULES_URL = "https://wbdv-generic-server.herokuapp.com/api/001063955/modules";
-const LESSONS_URL = "https://wbdv-generic-server.herokuapp.com/api/001063955/lessons";
-const TOPICS_URL = "https://wbdv-generic-server.herokuapp.com/api/001063955/topics";
-const WIDGETS_URL = process.env.SERVER_URL; // to be replaced by HerokuURL
+const WIDGETS_URL = process.env.REACT_APP_SERVER_URL; // to be replaced by HerokuURL
 console.log('url from widget-service',WIDGETS_URL);
 export const createWidget = (tid, widget) =>
     fetch(`${WIDGETS_URL}/topics/${tid}/widgets`, {
