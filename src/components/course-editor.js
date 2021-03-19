@@ -9,6 +9,7 @@ import ModuleList from "./module-list";
 import LessonTabs from "./lesson-tabs";
 import TopicPills from "./topic-pills";
 import CourseService from "../services/course-service";
+import WidgetList from "./widgets/widget-list";
 
 const reducer = combineReducers({
   moduleReducer: moduleReducer,
@@ -19,6 +20,10 @@ const reducer = combineReducers({
 const store = createStore(reducer);
 
 const CourseEditor = ({ history, name, params, coursetitle}) => {
+
+ 
+const WIDGETS_URL = process.env.REACT_APP_SERVER_URL; // to be replaced by HerokuURL
+console.log('url from widget-service',WIDGETS_URL);
   
   const {layout, courseId} = useParams();
   const [courseTitle, setCourseTitle] = useState("");
@@ -48,14 +53,21 @@ const CourseEditor = ({ history, name, params, coursetitle}) => {
         </div>
         <div className="col-9">
           <LessonTabs />
+          <br/>
+          <TopicPills />
+          <br/>
+          <WidgetList/>
         </div>
       </div>
-      <div className="row">
+      {/* <div className="row">
         <div className="col-3"></div>
         <div className="col-9">
           <TopicPills />
+          <br/>
+          <WidgetList/>
         </div>
-      </div>
+        
+      </div> */}
       
       {/* <div className="container-fluid">
     <h1>

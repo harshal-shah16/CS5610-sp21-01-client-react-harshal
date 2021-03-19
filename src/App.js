@@ -7,6 +7,11 @@ import {BrowserRouter, Route} from "react-router-dom";
 import Home from "./components/home"
 
 function App() {
+
+     
+const WIDGETS_URL = process.env.REACT_APP_SERVER_URL; // to be replaced by HerokuURL
+console.log('url from widget-service',WIDGETS_URL);
+  
   return (
 
   
