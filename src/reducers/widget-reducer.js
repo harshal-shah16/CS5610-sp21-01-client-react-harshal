@@ -9,7 +9,7 @@ const widgetReducer = (state = initialState, action) => {
         case "CREATE_WIDGET":
             return {
                 ...state,
-                topics: [
+                widgets: [
                     ...state.widgets,
                     action.widget
                 ]
@@ -19,7 +19,7 @@ const widgetReducer = (state = initialState, action) => {
             return {
                 ...state,
                 widgets: state.widgets.filter(widget => {
-                    if(widget._id !== action.widgetToDelete._id) {
+                    if(widget._id !== action.widgetToDelete) {
                         return true
                     } else {
                         return false
