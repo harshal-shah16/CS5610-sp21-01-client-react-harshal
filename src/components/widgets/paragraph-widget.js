@@ -3,11 +3,17 @@ import React, {useState, useEffect} from 'react'
 const ParagraphWidget = ({widget, setWidget, editing}) => {
     return (
         <div>
+
+        <h2>Paragraph Widget {widget.id}</h2>
+
+
             {
                 editing &&
                 <textarea
+                    rows="4"
+                    columns="50"
                     onChange={(e) => setWidget({...widget, text: e.target.value})}
-                    value={widget.text}
+                    defaultValue={widget.text}
                     className="form-control">                
                 </textarea>
             }

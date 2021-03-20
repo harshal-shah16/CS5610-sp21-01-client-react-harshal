@@ -13,11 +13,10 @@ const WidgetList = ({
         findWidgetsForTopic
 }) => {
     const {layout, courseId, moduleId, lessonId, topicId} = useParams()
-    console.log('topic id from widgetlist is', topicId)
+    
     // TODO: move all state handling to widgets-reducer.js
     const [widget, setWidget] = useState({});
-    console.log("widget from setState is ", widget)
-    
+
     
     //console.log('staet from widget list is', widgets)
     useEffect(() => {
@@ -27,7 +26,7 @@ const WidgetList = ({
         //     .then(widgets => setWidgets(widgets))
 
         findWidgetsForTopic(topicId)
-        console.log('topic id from useeffect', topicId)
+       
     }, [findWidgetsForTopic, topicId])
     
     
