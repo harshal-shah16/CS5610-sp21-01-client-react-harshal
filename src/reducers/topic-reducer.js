@@ -1,6 +1,6 @@
   
 const initialState = {
-    topics: [
+    topics: [{_id:"1111", title:"First title"}, {_id:"2222", title:"Second title"}, {_id:"3333", title:"Third title"}
         
     ]
 }

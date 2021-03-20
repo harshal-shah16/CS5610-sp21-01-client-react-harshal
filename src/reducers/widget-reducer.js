@@ -39,7 +39,9 @@ const widgetReducer = (state = initialState, action) => {
                     }
                 })
             }
-        case "FIND_WIDGETS_FOR_TOPICS":
+        case "FIND_WIDGETS_FOR_TOPIC":
+            // console.log("from reudcer", action.widgets)
+            // console.log("from reducer to", state.widgets)
                 return {
                     ...state,
                     widgets: action.widgets

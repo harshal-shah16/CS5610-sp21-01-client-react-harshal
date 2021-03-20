@@ -25,7 +25,7 @@ console.log('url from widget-service',WIDGETS_URL);
               "/courses/:layout/edit/:courseId/modules/:moduleId",
               "/courses/:layout/edit/:courseId/modules/:moduleId/lessons/:lessonId",
               "/courses/:layout/edit/:courseId/modules/:moduleId/lessons/:lessonId/topics/:topicId",
-              "/courses/:layout/edit/:courseId/modules/:moduleId/lessons/:lessonId/topics/:topicId/widges/:widgetId"
+              "/courses/:layout/edit/:courseId/modules/:moduleId/lessons/:lessonId/topics/:topicId/widgets/:widgetId"
           ]}
                  exact={true}
                  render={(props) => <CourseEditor {...props}/>}/>
