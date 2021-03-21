@@ -32,27 +32,27 @@ const WidgetList = ({
     
     return(
         <div>
-            <i onClick={() => createWidget(topicId)} className="fas fa-plus float-right fa-2x"></i>
-            <h1>Widget List {widget.id}</h1>
+            <i onClick={() => createWidget(topicId)} className="fas fa-plus float-right fa-2x m-2 p-1"></i>
+            <h3>Widget List for selected Topic</h3>
             <ul className="list-group">
                 {
                     widgets.map(_widget =>
-                        <li key={_widget.id} className="list-group-item">
+                        <li key={_widget.id} className="list-group-item mr-3 mb-2">
                             {
                                 _widget.id === widget.id &&
                                     <>
-                                        <i onClick={() => deleteWidget(_widget.id)} className="fas fa-trash float-right"></i>
+                                        <i onClick={() => deleteWidget(_widget.id)} className="fas fa-trash float-right m-2 p-1"></i>
                                         <i onClick={() => {
                                             setWidget({});
                                             updateWidget(_widget.id, widget)
-                                        }} className="fas fa-check float-right"></i>
+                                        }} className="fas fa-check float-right m-2 p-1"></i>
                                     </>
                             }
                             {
                                 _widget.id !== widget.id &&
                                 <i onClick={() => {
                                     //setWidget({});
-                                    setWidget(_widget)}} className="fas fa-cog float-right"></i>
+                                    setWidget(_widget)}} className="fas fa-cog float-right m-2 p-1"></i>
                             }
                             {
                                 _widget.type === "HEADING" &&

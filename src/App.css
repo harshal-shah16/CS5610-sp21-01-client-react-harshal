@@ -47,6 +47,14 @@
   color: rgb(248, 9, 21);
 }
 
+.fa-trash:hover{
+  color: rgb(248, 9, 21);
+}
+
+.fa-cog:hover{
+  color: rgb(30, 212, 14);
+}
+
 
 a:hover {
   background-color: cadetblue!important;

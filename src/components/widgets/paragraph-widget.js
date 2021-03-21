@@ -4,18 +4,24 @@ const ParagraphWidget = ({widget, setWidget, editing}) => {
     return (
         <div>
 
-        <h2>Paragraph Widget {widget.id}</h2>
+        {/* <h2>Paragraph Widget {widget.id}</h2> */}
 
 
             {
                 editing &&
-                <textarea
-                    rows="4"
-                    columns="50"
-                    onChange={(e) => setWidget({...widget, text: e.target.value})}
-                    defaultValue={widget.text}
-                    className="form-control">                
-                </textarea>
+                <div>
+                    <textarea
+                        rows="4"
+                        columns="50"
+                        onChange={(e) => setWidget({...widget, text: e.target.value})}
+                        defaultValue={widget.text}
+                        className="form-control mb-2">                
+                    </textarea>
+                    <select onChange={(e) => setWidget(widget => ({...widget, type: e.target.value}))} defaultValue={widget.type} className="form-control">
+                        <option value="HEADING">Heading</option>
+                        <option value="PARAGRAPH">Paragraph</option>
+                    </select>
+                </div>
             }
             {
                 !editing &&
