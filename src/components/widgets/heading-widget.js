@@ -16,10 +16,12 @@ const HeadingWidget = ({widget, setWidget, editing}) =>
         {
             editing &&
             <div>
-                <select onChange={(e) => setWidget(widget => ({...widget, type: e.target.value}))} defaultValue={widget.type} className="form-control">
+                {/* <select onChange={(e) => setWidget(widget => ({...widget, type: e.target.value}))} defaultValue={widget.type} className="form-control">
                     <option value="HEADING">Heading</option>
                     <option value="PARAGRAPH">Paragraph</option>
-                </select>
+                    <option value="LIST">List</option>
+                    <option value="IMAGE">Image</option>
+                </select> */}
                 <br/>
                 <input onChange={(e) => setWidget(widget => ({...widget, text: e.target.value}))} defaultValue={widget.text} className="form-control"/>
                 <br/>

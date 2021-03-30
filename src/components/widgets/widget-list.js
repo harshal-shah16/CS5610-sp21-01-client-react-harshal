@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from 'react'
 import {connect} from "react-redux";
 import HeadingWidget from "./heading-widget";
+import ListWidget from "./list-widget";
+import ImageWidget from "./image-widget";
 import ParagraphWidget from "./paragraph-widget";
 import {useParams} from "react-router-dom"
 import widgetService from "../../services/widget-service"
@@ -10,7 +12,8 @@ const WidgetList = ({
         createWidget,
         updateWidget,
         deleteWidget,
-        findWidgetsForTopic
+        findWidgetsForTopic,
+        
 }) => {
     const {layout, courseId, moduleId, lessonId, topicId} = useParams()
     
@@ -26,9 +29,31 @@ const WidgetList = ({
         //     .then(widgets => setWidgets(widgets))
 
         findWidgetsForTopic(topicId)
+        
        
     }, [findWidgetsForTopic, topicId])
+
+
     
+    const handleChange = (async (e, id) => {        
+        setWidget(widget => ({...widget, type: e}))
+
+        //await handleUpdateWidget(id)
+        //await findWidgetsForTopic(topicId)       
+
+    })
+
+    const handleUpdateWidget = (async(id) => {
+        await updateWidget(id, widget)
+
+    })
+
+    const handleValue = () => {
+        return widget.type;
+    
+    }
+
+
     
     return(
         <div>
@@ -46,6 +71,12 @@ const WidgetList = ({
                                             setWidget({});
                                             updateWidget(_widget.id, widget)
                                         }} className="fas fa-check float-right m-2 p-1"></i>
+                                        <select onChange={(e) => handleChange(e.target.value, _widget.id)} defaultValue={_widget.type} className="form-control">
+                                            <option value="HEADING">Heading</option>
+                                            <option value="PARAGRAPH">Paragraph</option>
+                                            <option value="LIST">List</option>
+                                            <option value="IMAGE">Image</option>
+                                        </select>
                                     </>
                             }
                             {
@@ -54,7 +85,9 @@ const WidgetList = ({
                                     //setWidget({});
                                     setWidget(_widget)}} className="fas fa-cog float-right m-2 p-1"></i>
                             }
+
                             {
+
                                 _widget.type === "HEADING" &&
                                 <HeadingWidget
                                 to={`topics/${topicId}`}
@@ -65,6 +98,23 @@ const WidgetList = ({
                             {
                                 _widget.type === "PARAGRAPH" &&
                                 <ParagraphWidget
+                                    setWidget={setWidget}
+                                    editing={_widget.id === widget.id}
+                                    widget={_widget}/>
+                            }
+
+                            {
+                                _widget.type === "LIST" &&
+                                <ListWidget
+                                    setWidget={setWidget}
+                                    editing={_widget.id === widget.id}
+                                    widget={_widget}/>
+                            }
+
+
+                            {
+                                _widget.type === "IMAGE" &&
+                                <ImageWidget
                                     setWidget={setWidget}
                                     editing={_widget.id === widget.id}
                                     widget={_widget}/>
