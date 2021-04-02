@@ -27,9 +27,10 @@ const WidgetList = ({
         // fetch(`http://localhost:8080/api/topics/${topicId}/widgets`)
         //     .then(response => response.json())
         //     .then(widgets => setWidgets(widgets))
-
-        findWidgetsForTopic(topicId)
-        
+        if (topicId) {
+            findWidgetsForTopic(topicId)
+        }
+    
        
     }, [findWidgetsForTopic, topicId])
 
