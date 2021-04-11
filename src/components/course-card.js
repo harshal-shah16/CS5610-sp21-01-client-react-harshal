@@ -31,11 +31,19 @@ return (
           />
           <div className="card-body">
             <h5 className="card-title">
-              {!editing && (
+              {!editing &&
+              <> 
+              (
                  <Link to={`/courses/card/edit/${course._id}`}>
-                 {course.title}
+                  {course.title}
                  </Link>
-              )}
+              )
+                  <Link to={`/courses/${course._id}/quizzes`}>
+                      quizzes
+                 </Link>
+
+              </>
+              }
               {editing && (
                 <input
                   className="form-control"

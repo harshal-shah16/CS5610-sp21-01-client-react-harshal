@@ -48,6 +48,12 @@ const CourseRow = ({
       >
         {course.lastModified}
       </td>
+
+      <td>
+            <Link to={`/courses/${course._id}/quizzes`}>
+                Quizzes
+            </Link>
+      </td>
       <td className="text-center" style={{ width: "20%" }}>
         {editing && (
           <i
