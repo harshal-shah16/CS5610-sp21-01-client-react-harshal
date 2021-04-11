@@ -68,6 +68,9 @@ export default class CourseTable extends React.Component {
               <th scope="col" className="d-none d-lg-table-cell text-center">
                 <h5>Last Modified</h5>
               </th>
+              <th scope="col">
+                
+              </th>
               <th scope="col" className="text-center">
                 <i className="fas fa-folder-open fa-2x mr-3"></i>
                 <i className="fa fa-sort fa-2x mr-3"></i>

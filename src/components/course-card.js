@@ -38,9 +38,6 @@ return (
                   {course.title}
                  </Link>
               )
-                  <Link to={`/courses/${course._id}/quizzes`}>
-                      quizzes
-                 </Link>
 
               </>
               }
@@ -52,7 +49,11 @@ return (
                 />
               )}
             </h5>
-            <p className="card-text">Course Description</p>
+            <p className="card-text">
+                  <Link to={`/courses/${course._id}/quizzes`}>
+                      Quizzes
+                 </Link>
+            </p>
             <Link
               className="btn btn-primary"
               to={{

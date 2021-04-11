@@ -22,7 +22,7 @@ const CourseRow = ({
 
   return (
     <tr>
-      <th scope="row" style={{ width: "40%" }}>
+      <th scope="row" style={{ width: "30%" }}>
         {!editing && (
           <Link to={`/courses/table/edit/${course._id}`}>
           {course.title}

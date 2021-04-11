@@ -1,16 +1,19 @@
 import React, {useState, useEffect} from "react";
 import {Link, useParams} from "react-router-dom";
+import quizService from "../../services/quiz-service"
 
 const QuizzesList = () => {
     const {courseId} = useParams();
     const [quizzes, setQuizzes] = useState([])
-    useEffect(() => {
+    useEffect( () => {
         // TODO: implement this in a separate service file
-        fetch("http://localhost:5000/api/quizzes")
-            .then(response => response.json())
-            .then((quizzes) => {
-                setQuizzes(quizzes)
-            })
+        //fetch("http://localhost:5000/api/quizzes")
+        async function fetchData () {
+            const response =  await quizService.findAllQuizzes()
+            setQuizzes(response);
+        } 
+        fetchData();
+            
     }, [])
     return(
         <div>

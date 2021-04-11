@@ -50,8 +50,9 @@ const CourseGrid = ({ courses, deleteCourse, updateCourse, addCourse }) => {
             <th scope="col" className="d-none d-sm-table-cell text-center">
               <h5>Owned By Me</h5>
             </th>
+         
             <th scope="col" className="text-center">
-              <i className="fas fa-folder-open fa-2x mr-3"></i>
+              <i className="fas fa-folder-open fa-2x mr-3 float-right"></i>
               <i className="fa fa-sort fa-2x mr-3"></i>
               <Link to="/courses/table">
                 <i className="fas fa-2x fa-list floating-grid-btn"></i>
