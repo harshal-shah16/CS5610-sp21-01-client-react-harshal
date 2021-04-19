@@ -1,20 +1,34 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 
-const TrueFalseQuestion = ({question}) => {
+const TrueFalseQuestion = ({question, submitted}) => {
     const [answer, setAnswer] = useState();
     const [grade, setGrade] = useState(false);
     const [correct, setCorrect] = useState(false)
-    const handleGrade = () => {
-        setGrade(true);
-        if (answer === question.correct) {
-            setCorrect(true)
-        }
-        else{
-            setCorrect(false)
-        }        
-    }
+    // const handleGrade = () => {
+    //     setGrade(true);
+    //     if (answer === question.correct) {
+    //         setCorrect(true)
+    //     }
+    //     else{
+    //         setCorrect(false)
+    //     }        
+    // }
 
+    useEffect(() => {
+        if (submitted) {
+            setGrade(true);
+            if (answer === question.correct) {
+                       setCorrect(true)
+                     }
+            else {
+                        setCorrect(false)
+            }      
+        }},
+    [submitted]);
+   
     const handleClick = () => {
+
+        
         setGrade(false);
         if (answer === question.correct) {
             setCorrect(true)
@@ -47,8 +61,11 @@ const TrueFalseQuestion = ({question}) => {
                 <label><input
                     type="radio"
                     onClick={() => {
+                        
                         setAnswer("true");
+                        question.answer = "true"
                         handleClick();
+                        
                     }}
                     name={question._id}/>True
                     {   grade &&  "true" === question.correct  &&
@@ -69,6 +86,7 @@ const TrueFalseQuestion = ({question}) => {
                     type="radio"
                     onClick={() => {
                         setAnswer("false");
+                        question.answer = "false"
                         handleClick();
 
                     }}
@@ -87,7 +105,7 @@ const TrueFalseQuestion = ({question}) => {
             </ul>
             <br/>  
             <h4>Your Answer:  {JSON.stringify(answer)}</h4>
-            <button type="button" onClick={handleGrade}>Grade</button>
+            {/* <button type="button" onClick={handleGrade}>Grade</button> */}
         </div>
     )
 }

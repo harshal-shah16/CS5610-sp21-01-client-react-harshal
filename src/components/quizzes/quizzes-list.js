@@ -22,15 +22,32 @@ const QuizzesList = () => {
                 {
                     quizzes.map((quiz) => {
                         return(
-                            <Link
-                                to={`/courses/${courseId}/quizzes/${quiz._id}`}
-                                className="list-group-item">
-                                {quiz.title}
-                            </Link>
+                            <div>
+                                <tr>
+                                    <td>
+                                        <Link
+                                            to={`/courses/${courseId}/quizzes/${quiz._id}`}
+                                            className="list-group-item">
+                                            {quiz.title}
+                                        </Link>
+                                    </td>
+                                    <td>
+                                        <Link
+                                            to={`/courses/${courseId}/quizzes/${quiz._id}/attempts`}
+                                            className="list-group-item">
+                                            Attempt History
+                                        </Link>
+                                    </td>
+                                </tr>
+                            </div>
+
+
                         )
                     })
                 }
             </div>
+
+            
         </div>
     )
 }

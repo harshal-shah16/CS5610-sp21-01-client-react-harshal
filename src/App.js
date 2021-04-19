@@ -3,10 +3,12 @@ import CourseManager from "./components/course-manager";
 import CourseEditor from "./components/course-editor";
 import Test from "./components/test";
 import QuizzesList from "./components/quizzes/quizzes-list";
+import AttemptHistory from "./components/quizzes/attempt-history";
 import Quiz from "./components/quizzes/quiz";
 
 import {BrowserRouter, Route} from "react-router-dom";
 import Home from "./components/home"
+
 
 function App() {
 
@@ -27,6 +29,9 @@ console.log('url from widget-service',WIDGETS_URL);
           </Route>
           <Route path="/courses/:courseId/quizzes/:quizId" exact={true}>
                   <Quiz/>
+          </Route>
+          <Route path="/courses/:courseId/quizzes/:quizId/attempts" exact={true}>
+                  <AttemptHistory/>
           </Route>
           <Route path={[
               "/courses/:layout/edit/:courseId",

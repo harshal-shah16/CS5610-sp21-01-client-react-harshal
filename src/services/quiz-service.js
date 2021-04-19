@@ -9,8 +9,15 @@ const findQuizById = (qid) => {
       .then(response => response.json())
 }
 
+
+const findQuizAttemptById = (quizId) => {
+   return fetch(`http://localhost:5000/api/quizzes/${quizId}/attempts`)
+      .then(response => response.json())
+}
+
+
 const submitQuiz = (quizId, questions) => {
-   fetch(`http://localhost:3000/api/quizzes/${quizId}/attempts`, {
+   fetch(`http://localhost:5000/api/quizzes/${quizId}/attempts`, {
      method: 'POST',
      body: JSON.stringify(questions),
      headers: {
@@ -22,6 +29,6 @@ const submitQuiz = (quizId, questions) => {
   
 
 const api = {
-   findAllQuizzes, findQuizById, submitQuiz
+   findAllQuizzes, findQuizById, submitQuiz, findQuizAttemptById
 }
 export default api;

@@ -1,29 +1,49 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 
-const MultipleChoiceQuestion = ({question}) => {
+const MultipleChoiceQuestion = ({question, submitted}) => {
 
+
+    
     const [answer, setAnswer] = useState();
     const [grade, setGrade] = useState(false);
     const [correct, setCorrect] = useState(false)
-    const handleGrade = () => {
-        setGrade(true);
-        if (answer === question.correct) {
-            setCorrect(true)
-        }
-        else{
-            setCorrect(false)
-        }        
-    }
-
-    const handleClick = () => {
+    // const handleGrade = () => {
+    //     setGrade(true);
+    //     if (answer === question.correct) {
+    //         setCorrect(true)
+    //     }
+    //     else{
+    //         setCorrect(false)
+    //     }        
+    // }
+    useEffect(() => {
+        if (submitted) {
+            setGrade(true);
+            if (answer === question.correct) {
+                       setCorrect(true)
+                     }
+            else {
+                        setCorrect(false)
+            }      
+        }},
+    [submitted]);
+    
+    const handleClick = (choice) => {
+        setAnswer(choice);
+        question.answer = choice;
         setGrade(false);
         if (answer === question.correct) {
+            
             setCorrect(true)
         }
         else{
             setCorrect(false)
         }
+        
+        
     }
+
+    
     return(
         <div>
             <h4>
@@ -53,8 +73,9 @@ const MultipleChoiceQuestion = ({question}) => {
                                         className = "m-2" 
                                         type="radio"
                                         onClick={() => {
-                                            setAnswer(choice);
-                                            handleClick();
+                                            //setAnswer(choice, () => handleClick)
+                                            // setAnswer(choice);
+                                            handleClick(choice);
                                         }}
                                         name={question._id}/>
                                     {choice} 
@@ -80,7 +101,7 @@ const MultipleChoiceQuestion = ({question}) => {
             </ul>
             <br/>  
             <h4>Your Answer:  {JSON.stringify(answer)}</h4>
-            <button type="button" onClick={handleGrade}>Grade</button>
+            {/* <button type="button" onClick={handleGrade}>Grade</button> */}
             
         </div>
     )
