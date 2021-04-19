@@ -1,4 +1,5 @@
-const QUIZZES_URL = 'http://localhost:5000/api/quizzes';
+require('dotenv').config()
+const QUIZZES_URL = process.env.NODE_SERVER_URL;
 
 const findAllQuizzes = () => {
    return fetch(QUIZZES_URL)
@@ -11,13 +12,13 @@ const findQuizById = (qid) => {
 
 
 const findQuizAttemptById = (quizId) => {
-   return fetch(`http://localhost:5000/api/quizzes/${quizId}/attempts`)
+   return fetch(`${QUIZZES_URL}/${quizId}/attempts`)
       .then(response => response.json())
 }
 
 
 const submitQuiz = (quizId, questions) => {
-   fetch(`http://localhost:5000/api/quizzes/${quizId}/attempts`, {
+   fetch(`${QUIZZES_URL}/${quizId}/attempts`, {
      method: 'POST',
      body: JSON.stringify(questions),
      headers: {
